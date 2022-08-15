@@ -10,7 +10,7 @@ This custom python implementation of Windows' classic minesweeper game has a RCE
 
 ## Investigation
 
-![alt text] (./images/hexdump.PNG)
+![Alt text] (./images/hexdump.PNG?raw=true "Hexdump")
 
 ## Exploit
 
