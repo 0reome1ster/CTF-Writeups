@@ -28,7 +28,7 @@ Looking at the networking section of your browser's development tools (I'm using
 
 ![Alt text](./images/websocket.PNG "Viewing websocket connections")
 
-Since I don't have a public/reachable IP (due to multiple NATs from ISP -> Me), reverse shells or anything of that sort is not a viable option. What we can do however, is create our own json object and use that to load the flag into the game_id. 
+Since I don't have a public/reachable IP (due to multiple NATs from ISP -> Me), reverse shells or anything of that sort is not a viable option. What we can do however, is create our own json object and use that to load the flag into the game_id. Here's how the game_id is used:
 
 ![Alt text](./images/game_state.PNG "Viewing game_id in websocket")
 
