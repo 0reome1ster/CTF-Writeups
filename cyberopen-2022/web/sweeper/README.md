@@ -12,7 +12,7 @@ This custom python implementation of the Windows' classic minesweeper game has a
 
 To solve this challenge, the creators said that we need to complete the minesweeper game normally; however, I have never played it before, so I won't be successful with this approach.
 
-Besides clicking the tiles like you would in any minesweeper game, users are also able to load (upload) and save (download) game states, along with refreshing the game. Since I do not know the format of the game state, the first thing to do is to save or download the current game and analyze it. The save file is base64-encoded, and after decoding the base64 and generating a hexdump of the result, notice that the first 2 bytes is: `0x80 0x04` and contains strings such as: game_id, mines, flagged, etc (see below for reference image).
+Besides clicking the tiles like you would in any minesweeper game, users are also able to load (upload) and save (download) game states, along with refreshing the game. Since I do not know the format of the game state, the first thing to do is to save or download the current game and analyze it. The save file is base64-encoded, and after decoding the base64 and generating a hexdump of the result, notice that the first 2 bytes is: `0x80 0x04` and contains strings such as: game_id, mines, flagged, etc.
 
 ![Alt text](./images/hexdump.PNG "Hexdump")
 
@@ -24,11 +24,15 @@ After some research, the magic bytes: `0x80 0x04` indicates that the base64-enco
 
 ### Determining path of exploitation
 
-Looking at the networking section of your browser's development tools (I'm using Google Chrome), you can see that the minesweeper game is using web sockets to communicate between client and server (see image below). 
+Looking at the networking section of your browser's development tools (I'm using Google Chrome), you can see that the minesweeper game is using web sockets to communicate between client and server. 
 
 ![Alt text](./images/websocket.PNG "Viewing websocket connections")
 
-Since I don't have a public/reachable IP (due to multiple NATs from ISP -> Me), reverse shells or anything of that sort is not a viable option. What we can do however, is create our own json object and use that to load the flag into the game_id. From there, we can pickle our custom payload and save it to upload to the game. Once the game reloads, we would be able to look at the websocket traffic and read the flag from the game_id.
+Since I don't have a public/reachable IP (due to multiple NATs from ISP -> Me), reverse shells or anything of that sort is not a viable option. What we can do however, is create our own json object and use that to load the flag into the game_id. 
+
+![Alt text](./images/game_state.PNG "Viewing game_id in websocket")
+
+From there, we can pickle our custom payload and save it to upload to the game. Once the game reloads, we would be able to look at the websocket traffic and read the flag from the game_id.
 
 ![Alt text](./images/flag.PNG "Woohoo!")
 
