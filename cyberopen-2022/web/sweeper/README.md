@@ -32,7 +32,7 @@ Since I don't have a public/reachable IP (due to multiple NATs from ISP -> Me), 
 
 ![Alt text](./images/game_state.PNG "Viewing game_id in websocket")
 
-From there, we can pickle our custom payload and save it to upload to the game. Once the game reloads, we would be able to look at the websocket traffic and read the flag from the game_id.
+From there, we can pickle our custom payload and save it, and upload it to the game. Once the game reloads, we would be able to look at the websocket traffic and read the flag from the game_id.
 
 ![Alt text](./images/flag.PNG "Woohoo!")
 
